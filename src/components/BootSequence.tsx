@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 const LINES = [
-  "> INIT_SYSTEM_SCHEMA.exe",
-  "> MAPPING_NODES...",
-  "> LINKING_TOPOLOGY [4/4]",
-  "> PULSE_FREQ = 1.4Hz",
-  "> READY.",
+  "> Rishik RVR",
+  "> CS / 03 — Lendi Institute",
+  "> Vizianagaram / India",
+  "> Available for work",
+  "> Let's build.",
 ];
 
 export function BootSequence() {
