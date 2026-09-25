@@ -10,15 +10,17 @@ import { DotField } from "@/components/DotField";
 import { SocialRail } from "@/components/SocialRail";
 import { Timeline } from "@/components/Timeline";
 import { WorkShowcase } from "@/components/WorkShowcase";
+import { BeyondSoftware } from "@/components/BeyondSoftware";
+import portrait from "@/assets/portrait.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "System Schema — CS Engineer Portfolio" },
-      { name: "description", content: "Full-screen interactive portfolio of a computer-science engineer: systems, algorithms, ML, networks and security." },
-      { property: "og:title", content: "System Schema — CS Engineer Portfolio" },
-      { property: "og:description", content: "An interactive, full-screen map of projects, hackathons and skills." },
+      { title: "Rishik RVR — Computer Science Student & Builder" },
+      { name: "description", content: "Third-year Computer Science student at Lendi Institute of Engineering and Technology, building software, systems and experimental projects across backend development, networking, hardware and more." },
+      { property: "og:title", content: "Rishik RVR — Computer Science Student & Builder" },
+      { property: "og:description", content: "Third-year Computer Science student building software, systems and experimental projects." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -27,20 +29,27 @@ export const Route = createFileRoute("/")({
 
 const SECTIONS = [
   ["hero", "Index"], ["about", "About"], ["work", "Work"],
-  ["hackathons", "Hacks"], ["stack", "Stack"], ["contact", "Contact"],
+  ["hackathons", "Hacks"], ["beyond", "Beyond"], ["toolkit", "Toolkit"], ["contact", "Contact"],
 ] as const;
 
-const SKILLS: Record<string, string[]> = {
-  languages: ["Rust", "Go", "Python", "TypeScript", "C/C++"],
-  systems: ["Linux", "Docker", "Kubernetes", "PostgreSQL", "Redis"],
-  ml: ["PyTorch", "JAX", "ONNX", "scikit-learn"],
-  web: ["React", "Node", "GraphQL", "Three.js"],
-};
-const JOURNEY = [
-  { year: "2026 — now", title: "Research Intern — Systems Lab", body: "Working on distributed scheduling and consensus under partitions." },
-  { year: "2025", title: "SWE Intern — Infra team", body: "Built internal observability tooling used across three teams." },
-  { year: "2024", title: "Open-source contributor", body: "Patches to networking and ML libraries." },
-  { year: "2023", title: "Started B.Tech, Computer Science", body: "Where the schema began." },
+const SKILL_CATEGORIES = [
+  { label: "Programming", items: ["C", "C++", "Java", "Python", "JavaScript", "Go", "Unix Shell"] },
+  { label: "Web / Backend", items: ["HTML", "JavaScript", "React", "FastAPI", "Vite", "Tailwind CSS"] },
+  { label: "Database", items: ["SQL", "PostgreSQL"] },
+  { label: "Systems", items: ["Linux", "Windows", "macOS", "Android", "iOS", "iPadOS"] },
+  { label: "Tools", items: ["Git", "GitHub", "Linux tools", "Server config", "Hardware config"] },
+];
+
+const TOOLKIT_ROWS = [
+  ["C", "C++", "Java", "Python", "JavaScript", "Go", "Unix Shell"],
+  ["HTML", "React", "FastAPI", "Vite", "Tailwind CSS", "PostgreSQL", "SQL"],
+  ["Git", "Linux", "Qiskit", "NumPy", "WebRTC"],
+];
+
+const EDUCATION = [
+  { period: "2022", title: "Narayana School", body: "10th standard" },
+  { period: "2024", title: "Narayana Junior College, Vizianagaram", body: "Intermediate" },
+  { period: "2024 — Present", title: "Lendi Institute of Engineering and Technology", body: "B.Tech Computer Science" },
 ];
 
 function Hl({ children }: { children: ReactNode }) {
@@ -121,7 +130,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-30 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 md:px-10">
         <button onClick={() => go(0)} className="flex min-w-0 items-center gap-3">
           <span className="relative h-2.5 w-2.5 shrink-0"><span className="absolute inset-0 rounded-full bg-primary heartbeat" /><span className="absolute inset-0 rounded-full bg-primary blur-sm heartbeat" /></span>
-          <span className="truncate font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">schema.online</span>
+          <span className="truncate font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">rishik rvr</span>
         </button>
         <div className="flex items-center gap-4">
           <span className="font-mono text-[10px] tabular-nums tracking-[0.2em] text-muted-foreground">
@@ -153,121 +162,141 @@ function Index() {
             <div className="lg:col-span-7">
               <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-primary/25 bg-primary/5 px-4 py-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary heartbeat" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">system active · available for work</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">CS / 03 · available for work</span>
               </div>
               <h1 className="font-display text-[clamp(2.6rem,7vw,6.2rem)] font-bold uppercase leading-[0.93] tracking-[-0.03em]">
-                A system of<br /><Hl>moving parts</Hl><span className="text-primary">.</span>
+                I build<br />things that<br /><Hl>interest me</Hl><span className="text-primary">.</span>
               </h1>
               <p className="mt-7 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
-                Computer-science engineer building software at the seams — where systems, algorithms and security meet.
+                Third-year Computer Science student at Lendi Institute of Engineering and Technology, exploring backend systems, software, hardware, networking, and whatever interesting problem comes next.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-6">
                 <Magnetic>
-                  <button onClick={() => go(2)} data-cursor-label="go" className="btn-solid">View projects <span aria-hidden>→</span></button>
+                  <button onClick={() => go(2)} data-cursor-label="work" className="btn-solid">View My Work <span aria-hidden>→</span></button>
                 </Magnetic>
-                <button onClick={() => go(5)} className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground underline-offset-8 transition-colors hover:text-foreground hover:underline">Open a channel →</button>
+                <Magnetic>
+                  <a href="https://github.com/RishikRVR" target="_blank" rel="noopener noreferrer" data-cursor-label="github" className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground underline-offset-8 transition-colors hover:text-foreground hover:underline">GitHub →</a>
+                </Magnetic>
               </div>
               <div className="mt-10 hidden max-w-sm border-l border-primary/40 pl-4 sm:block"><BootSequence /></div>
             </div>
 
-            {/* Portrait slot */}
+            {/* Portrait */}
             <div className="lg:col-span-5">
               <div className="photo-frame group relative mx-auto w-full max-w-[300px] md:max-w-[360px]">
                 <div className="relative aspect-[4/5] overflow-hidden border border-border bg-card/40">
-                  <div className="grid-bg absolute inset-0 opacity-25" aria-hidden />
+                  <img src={portrait} alt="Rishik RVR — Computer Science Student" className="absolute inset-0 h-full w-full object-cover" loading="eager" width={360} height={450} />
                   <div className="scan-beam absolute inset-x-0" aria-hidden />
-                  <div className="absolute inset-0 grid place-items-center">
-                    <div className="text-center">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className="mx-auto h-10 w-10 text-muted-foreground/60">
-                        <circle cx="12" cy="8.5" r="3.5" />
-                        <path d="M5 19.5c1.6-3.2 4-4.8 7-4.8s5.4 1.6 7 4.8" />
-                      </svg>
-                      <div className="mt-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">portrait_slot / 4:5</div>
-                      <div className="mt-1 font-mono text-[9px] tracking-[0.15em] text-muted-foreground/60">0x001 — your photo lands here</div>
-                    </div>
-                  </div>
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-background/30" />
-                  <div className="absolute bottom-4 left-4 font-mono text-[10px] tracking-tighter text-foreground/50">0x001 / PORTRAIT_FILE</div>
+                  <div className="absolute bottom-4 left-4 font-mono text-[10px] tracking-tighter text-foreground/50">Rishik RVR / 2026</div>
                   <div className="absolute right-4 top-4 flex gap-1.5" aria-hidden>
                     <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
                     <span className="h-1.5 w-1.5 rounded-full bg-border" />
                     <span className="h-1.5 w-1.5 rounded-full bg-border" />
                   </div>
                 </div>
+                <div className="mt-3 text-center font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+                  CS / 03 · Lendi · 2024 — Present
+                </div>
               </div>
             </div>
           </div>
         </Panel>
 
-        {/* ---------- ABOUT / TIMELINE ---------- */}
-        <Panel id="about" code="02" label="about" title={<>Hello, I build <Hl>systems</Hl>.</>} active={active === 1}>
+        {/* ---------- ABOUT ---------- */}
+        <Panel id="about" code="02" label="about" title={<>Hello, I'm <Hl>Rishik</Hl>.</>} active={active === 1}>
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-                I'm obsessed with how things work underneath — from memory layouts to distributed consensus. I like problems between disciplines, and software that's fast, correct and quietly elegant.
+                I'm a third-year Computer Science student at Lendi Institute of Engineering and Technology, Vizianagaram.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                I enjoy building things across the software stack, with a particular interest in backend development, databases, systems, networking and infrastructure.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                Outside software, I like understanding how hardware and operating systems work, experimenting with different platforms, modifying devices, and figuring out how things behave underneath the interface.
               </p>
               <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono">
-                {[["12+", "projects"], ["6", "hackathons"], ["2", "papers"]].map(([n, l]) => (
+                {[["06", "projects"], ["05", "hackathons"], ["03", "custom kernels"]].map(([n, l]) => (
                   <div key={l} className="flex items-baseline gap-2">
                     <span className="font-display text-2xl font-bold text-primary">{n}</span>
                     <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{l}</span>
                   </div>
                 ))}
               </div>
+
+              {/* What I Work With */}
+              <div className="mt-8">
+                <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// what I work with</div>
+                <div className="space-y-4">
+                  {SKILL_CATEGORIES.map((cat) => (
+                    <div key={cat.label}>
+                      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{cat.label}</div>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {cat.items.map((item) => <span key={item} className="chip">{item}</span>)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div>
-              <div className="mb-6 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// the journey</div>
-              <Timeline items={JOURNEY.map((j) => ({ period: j.year, title: j.title, body: j.body }))} />
+              <div className="mb-6 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// education</div>
+              <Timeline items={EDUCATION.map((j) => ({ period: j.period, title: j.title, body: j.body }))} />
             </div>
           </div>
         </Panel>
 
-        {/* ---------- WORK / HORIZONTAL ---------- */}
+        {/* ---------- WORK ---------- */}
         <Panel id="work" active={active === 2} bare>
           <WorkShowcase active={active === 2} />
         </Panel>
 
         {/* ---------- HACKATHONS ---------- */}
-        <Panel id="hackathons" code="04" label="hackathons" title={<>48 hours, <Hl>zero sleep</Hl>.</>} active={active === 3}>
+        <Panel id="hackathons" code="04" label="hackathons" title={<>Built under <Hl>pressure</Hl>.</>} active={active === 3}>
           <HackList />
         </Panel>
 
-        {/* ---------- STACK / MARQUEE ---------- */}
-        <Panel id="stack" code="05" label="stack" title={<>The <Hl>toolchain</Hl>.</>} active={active === 4}>
-          <Marquee rows={[SKILLS.languages, SKILLS.systems, [...SKILLS.ml, ...SKILLS.web]]} />
+        {/* ---------- BEYOND SOFTWARE ---------- */}
+        <Panel id="beyond" code="05" label="beyond software" title={<>Beyond <Hl>software</Hl>.</>} active={active === 4}>
+          <BeyondSoftware />
+        </Panel>
+
+        {/* ---------- TOOLKIT ---------- */}
+        <Panel id="toolkit" code="06" label="toolkit" title={<>The <Hl>toolkit</Hl>.</>} active={active === 5}>
+          <Marquee rows={TOOLKIT_ROWS} />
           <div className="mt-10 flex justify-between font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground/60">
-            <span>infinite loop // no buffers</span>
+            <span>verified technologies // no fake percentages</span>
             <span className="hidden sm:inline">hover to pause</span>
           </div>
         </Panel>
 
         {/* ---------- CONTACT ---------- */}
-        <Panel id="contact" code="06" label="contact" active={active === 5}>
+        <Panel id="contact" code="07" label="contact" active={active === 6}>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
               <h2 className="font-display text-[clamp(3rem,9vw,7rem)] font-bold uppercase leading-[0.9] tracking-[-0.03em]">
-                Let's<br /><Hl>build.</Hl>
+                Let's<br /><Hl>talk.</Hl>
               </h2>
               <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
-                Available for research collaborations, internships and architecturally interesting problems.
+                Have a project, collaboration, technical idea, or something interesting to build?
               </p>
             </div>
-            <div className="flex flex-col justify-end gap-10">
+            <div className="flex flex-col justify-end gap-8">
               <Magnetic strength={0.18}>
-                <a href="mailto:hello@example.dev" data-cursor-label="mail" className="break-all border-b border-border pb-4 font-mono text-xl transition-colors duration-300 hover:border-primary hover:text-primary md:text-3xl">
-                  hello@example.dev
+                <a href="mailto:rishikrvr@gmail.com" data-cursor-label="mail" className="break-all border-b border-border pb-4 font-mono text-xl transition-colors duration-300 hover:border-primary hover:text-primary md:text-3xl">
+                  rishikrvr@gmail.com
                 </a>
               </Magnetic>
               <div className="flex flex-wrap gap-8 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                <a href="#" className="transition-colors hover:text-foreground">github ↗</a>
-                <a href="#" className="transition-colors hover:text-foreground">linkedin ↗</a>
-                <a href="#" className="transition-colors hover:text-foreground">cv.pdf ↗</a>
+                <a href="https://github.com/RishikRVR" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">github ↗</a>
+                <a href="https://www.linkedin.com/in/venkata-ram-rishik-rali-74233b30b/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">linkedin ↗</a>
               </div>
             </div>
           </div>
           <footer className="mt-16 flex flex-wrap justify-between gap-4 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-            <span>© 2026 — schema.online</span>
-            <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary heartbeat" />system nominal</span>
+            <span>© 2026 — Rishik RVR</span>
+            <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary heartbeat" />available for work</span>
           </footer>
         </Panel>
       </div>
