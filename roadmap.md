@@ -8,3 +8,4 @@
 - [x] Favicon: RVR monogram SVG + apple-touch-icon + manifest
 - [x] SEO: Real title and description metadata
 - [ ] Visual QA pass: desktop + mobile, links, animations, loading states, accessibility
+- [ ] Fit every main section within one viewport without nested scrolling; replace loader with restrained editorial direction
