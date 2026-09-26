@@ -64,14 +64,14 @@ function Panel({
 }) {
   return (
     <section id={id} data-panel className="snap-panel">
-      <div className={bare ? "panel-scroll h-full w-full" : "panel-scroll mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 md:px-16 md:py-24"}>
+      <div className={bare ? "h-full w-full" : "mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-5 py-16 sm:px-8 md:px-16 md:py-20"}>
         <div className={`reveal ${active ? "is-active" : ""}`}>
           {code && (
             <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground md:mb-10">
               <span className="text-primary">{code}</span><span className="h-px w-10 bg-primary/50" /><span>{label}</span>
             </div>
           )}
-          {title && <h2 className="mb-8 font-display text-3xl font-bold leading-[1.02] tracking-tight sm:text-4xl md:mb-12 md:text-6xl">{title}</h2>}
+          {title && <h2 className="mb-5 font-display text-3xl font-bold leading-[1.02] tracking-tight sm:text-4xl md:mb-7 md:text-5xl">{title}</h2>}
           {children}
         </div>
       </div>
@@ -205,35 +205,35 @@ function Index() {
 
         {/* ---------- ABOUT ---------- */}
         <Panel id="about" code="02" label="about" title={<>Hello, I'm <Hl>Rishik</Hl>.</>} active={active === 1}>
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <div className="grid gap-5 md:grid-cols-[1.08fr_0.92fr] md:gap-10">
             <div>
-              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="text-sm leading-relaxed text-muted-foreground">
                 I'm a third-year Computer Science student at Lendi Institute of Engineering and Technology, Vizianagaram.
               </p>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 I enjoy building things across the software stack, with a particular interest in backend development, databases, systems, networking and infrastructure.
               </p>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-2 hidden text-sm leading-relaxed text-muted-foreground sm:block">
                 Outside software, I like understanding how hardware and operating systems work, experimenting with different platforms, modifying devices, and figuring out how things behave underneath the interface.
               </p>
-              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono">
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono">
                 {[["06", "projects"], ["05", "hackathons"], ["03", "custom kernels"]].map(([n, l]) => (
                   <div key={l} className="flex items-baseline gap-2">
-                    <span className="font-display text-2xl font-bold text-primary">{n}</span>
+                    <span className="font-display text-xl font-bold text-primary">{n}</span>
                     <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{l}</span>
                   </div>
                 ))}
               </div>
 
               {/* What I Work With */}
-              <div className="mt-8">
-                <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// what I work with</div>
-                <div className="space-y-4">
+              <div className="mt-4">
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// what I work with</div>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                   {SKILL_CATEGORIES.map((cat) => (
                     <div key={cat.label}>
                       <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{cat.label}</div>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {cat.items.map((item) => <span key={item} className="chip">{item}</span>)}
+                      <div className="mt-1 text-[10px] leading-relaxed text-muted-foreground">
+                        {cat.items.join(" · ")}
                       </div>
                     </div>
                   ))}
@@ -241,7 +241,7 @@ function Index() {
               </div>
             </div>
             <div>
-              <div className="mb-6 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// education</div>
+               <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.35em] text-primary">// education</div>
               <Timeline items={EDUCATION.map((j) => ({ period: j.period, title: j.title, body: j.body }))} />
             </div>
           </div>
@@ -265,7 +265,7 @@ function Index() {
         {/* ---------- TOOLKIT ---------- */}
         <Panel id="toolkit" code="06" label="toolkit" title={<>The <Hl>toolkit</Hl>.</>} active={active === 5}>
           <Marquee rows={TOOLKIT_ROWS} />
-          <div className="mt-10 flex justify-between font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground/60">
+           <div className="mt-6 flex justify-between font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground/60">
             <span>verified technologies // no fake percentages</span>
             <span className="hidden sm:inline">hover to pause</span>
           </div>

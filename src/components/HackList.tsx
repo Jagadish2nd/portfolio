@@ -73,17 +73,17 @@ export function HackList() {
           <button
             onClick={() => setOpen(open === i ? null : i)}
             data-active={open === i}
-            className="hack-row group grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 border-b border-border px-2 py-5 text-left md:grid-cols-[3rem_minmax(0,1.2fr)_minmax(0,1fr)_6rem] md:gap-6 md:py-6"
+            className="hack-row group grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-b border-border px-1 py-3 text-left md:grid-cols-[2rem_minmax(0,1.2fr)_minmax(0,1fr)_6rem] md:gap-5 md:py-3.5"
           >
             <span className="font-mono text-xs text-muted-foreground">{h.num}</span>
             <div className="min-w-0">
-              <div className="truncate font-display text-lg transition-colors group-hover:text-foreground md:text-2xl">{h.name}</div>
+              <div className="truncate font-display text-base transition-colors group-hover:text-foreground md:text-lg">{h.name}</div>
               <div className="truncate text-xs text-muted-foreground md:hidden">{h.venue}</div>
             </div>
             <div className="hidden min-w-0 md:block">
               <div className="truncate text-sm text-muted-foreground">{h.project}</div>
               <div className="mt-1 flex flex-wrap gap-2">
-                {h.tags.map((t) => <span key={t} className="chip">{t}</span>)}
+                {h.tags.slice(0, 2).map((t) => <span key={t} className="chip">{t}</span>)}
               </div>
             </div>
             <span className="text-right text-[10px] uppercase tracking-[0.25em] text-primary md:text-left">
@@ -92,8 +92,8 @@ export function HackList() {
             </span>
           </button>
           {open === i && h.detail && (
-            <div className="border-b border-border bg-card/30 px-2 pb-5 pt-1 md:px-6">
-              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">{h.detail}</p>
+            <div className="border-b border-border bg-card/30 px-2 py-2 md:px-6">
+              <p className="max-w-3xl text-xs leading-relaxed text-muted-foreground">{h.detail}</p>
             </div>
           )}
         </div>
