@@ -37,24 +37,3 @@ EventVisual ResponseSystem LogicInitial HitText prints: > MAPPING_NODES...Loads 
 As a CS student, you want the background to feel "computed." Add a "Noise Texture" overlay at 0.03 opacity. This makes the grey background feel like a physical screen or a blueprint rather than just a flat digital color.
 Final Instruction for the Build:
 When you paste the prompt into Spline or your code editor, ensure the "Field of View" (FOV) of your camera is set to 35. This provides a professional, architectural look that prevents the 3D objects from looking "distorted" or "bubbly" on wide desktop monitors.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e0abea8d-a46c-460b-a880-5da16cae9c94).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
